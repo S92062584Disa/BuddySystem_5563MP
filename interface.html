@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buddy System Memory Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .section {
+      flex: 1;
+      min-width: 300px;
+    }
+    .memory-visual {
+      position: relative;
+      height: 600px; /* Total visualization height */
+      width: 300px; /* Width of the memory rectangle */
+      border: 2px solid black; /* Border for the entire memory visualization */
+      overflow: hidden;
+    }
+    .memory-block {
+      position: relative;
+      width: 100%;
+      border: 1px solid black;
+      box-sizing: border-box;
+      font-size: 12px;
+      text-align: center;
+      color: white;
+    }
+    .free {
+      background-color: green;
+    }
+    .occupied {
+      background-color: red;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .fragment {
+      width: 100%;
+      background-color: yellow;
+      color: black;
+      font-size: 10px;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+  </style>
+</head>
+<body>
+  <h1>Buddy System Memory Management</h1>
+  <div class="container">
+    <!-- <div class="section">
+      <h2>Setup</h2>
+      <label for="memory-size">Memory Size (Power of 2):</label>
+      <input type="number" id="memory-size" />
+      <button id="set-memory">Set Memory</button>
+    </div> -->
+
+  
+    <div class="section">
+      <h2>Job Management</h2>
+      <label for="job-name">Job Name:</label>
+      <input type="text" id="job-name" />
+      <label for="job-size">Job Size:</label>
+      <input type="number" id="job-size" />
+      <label for="job-action">Action:</label>
+      <select id="job-action">
+        <option value="arrive">Arrive</option>
+        <option value="leave">Leave</option>
+      </select>
+      <button id="add-job">Add Job</button>
+    </div>
+    <div class="section">
+      <h2>Legend</h2>
+      <p><span style="color: green;">■</span> Free</p>
+      <p><span style="color: red;">■</span> Occupied</p>
+      <p><span style="color: yellow;">■</span> Internal Fragmentation</p>
+    </div>
+  </div>
+
+  <h3>Lets assume the memory pool is 2048KB</h3><br>
+  <div class="container">
+    <div class="section">
+      <h2>Job Table</h2>
+      <table id="job-table">
+        <thead>
+          <tr>
+            <th>Job</th>
+            <th>Action</th>
+            <th>Memory Needed(KB)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="section">
+      <h2>Memory Table</h2>
+      <table id="memory-table">
+        <thead>
+          <tr>
+            <th>Block ID</th>
+            <th>Block Size(KB)</th>
+            <th>Status</th>
+            <th>Job ID</th>
+            <th>Internal Fragmentation</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="section">
+      <h2>Memory Visualization</h2>
+      <div class="memory-visual" id="memory-visual"></div> 
+    </div>
+  </div>
+  <script src="logic.js"></script>
+</body>
+</html>
